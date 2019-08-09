@@ -3,3 +3,5 @@ flask
 flask-cors
 Flask-PyMongo
 dnspython
+flask
+python-dotenv
