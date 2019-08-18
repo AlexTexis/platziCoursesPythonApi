@@ -10,7 +10,7 @@ def get_all():
       students = {}
 
       if request.method == 'GET' :
-            collection = mongo.db.alumns
+            collection = mongo.db.students
             students = dumps( collection.find({}) )
 
       return jsonify({
@@ -24,7 +24,7 @@ def get_one(idStudent) :
       student = {}
 
       if request.method == 'GET' and student_id is not None :
-            lection = mongo.db.alumns
+            lection = mongo.db.students
             student = dumps( collection.find_one({'_id' : ObjectId(student_id)}) )
 
       return jsonify({
@@ -38,7 +38,7 @@ def create() :
       request_body = request.get_json()
 
       if request.method == 'POST':
-            collection = mongo.db.alumns
+            collection = mongo.db.students
             response = str(collection.insert_one(request_body).inserted_id)
             created = dumps({'_id' : response,**request_body })
 
@@ -54,7 +54,7 @@ def update(idStudent) :
       request_body = request.get_json()
 
       if request.method == 'PUT' and student_id is not None:
-            collection = mongo.db.alumns     
+            collection = mongo.db.students     
             response = str( collection.update_one({ '_id' : ObjectId(student_id)},{'$set' : request_body}).modified_count )
             if response == '1':
                   updated = dumps({ '_id' : student_id,**request_body })
@@ -70,7 +70,7 @@ def delete(idStudent) :
       deleted = ''
 
       if request.method == 'DELETE' and student_id is not None:
-            collection = mongo.db.alumns
+            collection = mongo.db.students
             response = str( collection.delete_one({ '_id' : ObjectId(student_id)}).deleted_count )
             if response == '1' :
                   deleted = student_id
