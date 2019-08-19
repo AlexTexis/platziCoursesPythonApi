@@ -91,7 +91,7 @@ def add_student(idCourse) :
 
     if request.method == 'POST' and course_id is not None :
         collectionCourse = mongo.db.courses
-        collectionStudents = mongo.db.alumns
+        collectionStudents = mongo.db.students
 
         # projection Student
         projection = json.loads(dumps(collectionStudents.find_one({
@@ -141,7 +141,7 @@ def remove_student(idCourse,idStudent) :
     })
 
 # CLASSES
-@courses_bp.route('/<idCourse>/classes',methods=['POST'])
+@courses_bp.route('/<idCourse>/class',methods=['POST'])
 def add_class(idCourse) :
     request_body = request.get_json()
     course_id = idCourse
@@ -177,7 +177,7 @@ def add_class(idCourse) :
     })
 
 
-@courses_bp.route('/<idCourse>/classes/<idClase>',methods=['DELETE'])
+@courses_bp.route('/<idCourse>/class/<idClase>',methods=['DELETE'])
 def remove_class(idCourse,idClase) :
     course_id = idCourse
     class_id = idClase
