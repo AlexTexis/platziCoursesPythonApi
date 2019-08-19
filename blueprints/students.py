@@ -24,7 +24,7 @@ def get_one(idStudent) :
       student = {}
 
       if request.method == 'GET' and student_id is not None :
-            lection = mongo.db.students
+            collection = mongo.db.students
             student = dumps( collection.find_one({'_id' : ObjectId(student_id)}) )
 
       return jsonify({
