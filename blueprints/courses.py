@@ -91,7 +91,7 @@ def add_student(idCourse) :
 
     if request.method == 'POST' and course_id is not None :
         collectionCourse = mongo.db.courses
-        collectionStudents = mongo.db.alumns
+        collectionStudents = mongo.db.students
 
         # projection Student
         projection = json.loads(dumps(collectionStudents.find_one({
